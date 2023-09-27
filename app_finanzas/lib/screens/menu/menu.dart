@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
-import 'funciones/ClickContainer.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyPage(),
-    );
-  }
-}
+import '/funciones/ClickContainer.dart';
 
 class MyPage extends StatelessWidget {
   @override
@@ -25,7 +12,10 @@ class MyPage extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color.fromARGB(255, 147, 67, 212), Color.fromARGB(255, 191, 101, 207)],
+                colors: [
+                  Color.fromARGB(255, 147, 67, 212),
+                  Color.fromARGB(255, 191, 101, 207)
+                ],
               ),
             ),
           ),
@@ -85,47 +75,48 @@ class MyPage extends StatelessWidget {
                       ],
                     ),
                     child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
-                        child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 12.0,
-                              height: 12.0,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromARGB(255, 226, 33, 243),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 4),
+                          child: Row(
+                            //mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 12.0,
+                                height: 12.0,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromARGB(255, 226, 33, 243),
+                                ),
                               ),
-                            ),
-                            const Text(
-                              'Este Mes',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.black,
+                              const Text(
+                                'Este Mes',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 44.0),
-                            Container(
-                              width: 12.0,
-                              height: 12.0,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color.fromARGB(255, 84, 183, 201),
+                              const SizedBox(width: 44.0),
+                              Container(
+                                width: 12.0,
+                                height: 12.0,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromARGB(255, 84, 183, 201),
+                                ),
                               ),
-                            ),
-                            const Text(
-                              'Promedio',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.black,
+                              const Text(
+                                'Promedio',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   /*Padding(
