@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'funciones/ClickContainer.dart';
 
 void main() {
   runApp(MyApp());
@@ -60,7 +61,7 @@ class MyPage extends StatelessWidget {
             right: 0,
             child: Container(
               height: MediaQuery.of(context).size.height * 2 / 3,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 241, 241, 241),
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(30.0),
@@ -93,28 +94,28 @@ class MyPage extends StatelessWidget {
                             Container(
                               width: 12.0,
                               height: 12.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color.fromARGB(255, 226, 33, 243),
+                                color: Color.fromARGB(255, 226, 33, 243),
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Este Mes',
                               style: TextStyle(
                                 fontSize: 16.0,
                                 color: Colors.black,
                               ),
                             ),
-                            SizedBox(width: 44.0),
+                            const SizedBox(width: 44.0),
                             Container(
                               width: 12.0,
                               height: 12.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Color.fromARGB(255, 84, 183, 201),
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Promedio',
                               style: TextStyle(
                                 fontSize: 16.0,
@@ -147,44 +148,33 @@ class MyPage extends StatelessWidget {
                       hint: Text('Select an option'),
                     ),
                   ),*/
-                  SizedBox(height: 160.0),
+                  const SizedBox(height: 160.0),
                   Container(
                     color: const Color.fromARGB(255, 56, 56, 56),
                     height: 1.0,
-                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
                   ),
-                  GestureDetector(
-                    //onTap: onTap,
-                    child: Container(
-                      height: 60,
-                      margin: EdgeInsets.all(16.0),
-                      padding: EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.monetization_on, color: Colors.purple),
-                          SizedBox(width: 16.0),
-                          Text(
-                            'Modificar Gastos',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                  buildClickableContainer(
+                    icon: Icons.monetization_on_rounded,
+                    texto: 'Gastos',
+                    onTap: () {
+                      // Open the settings modal or perform an action here
+                    },
+                  ),
+                  buildClickableContainer(
+                    icon: Icons.history,
+                    texto: 'Historial',
+                    onTap: () {
+                      // Open the settings modal or perform an action here
+                    },
+                  ),
+                  buildClickableContainer(
+                    icon: Icons.category,
+                    texto: 'Categorias',
+                    onTap: () {
+                      // Open the settings modal or perform an action here
+                    },
+                  ),
                 ],
               ),
             ),
