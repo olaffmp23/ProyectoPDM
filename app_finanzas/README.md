@@ -1,6 +1,6 @@
 # app_finanzas
 
-A new Flutter project.
+Una APP para adultos jóvenes para llevar un buen control de sus finanzas de manera sencilla.
 
 ## Getting Started
 
