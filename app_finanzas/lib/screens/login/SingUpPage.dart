@@ -45,55 +45,167 @@ class _SignUpPageState extends State<SignUpPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Nombre',
-                            prefixIcon: Icon(Icons.person),
+                            prefixIcon: Icon(Icons.person,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Apellido',
-                            prefixIcon: Icon(Icons.person),
+                            prefixIcon: Icon(Icons.person,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Fecha de Nacimiento',
-                            prefixIcon: Icon(Icons.calendar_today),
+                            prefixIcon: Icon(Icons.calendar_today,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Ocupación (Opcional)',
-                            prefixIcon: Icon(Icons.work),
+                            prefixIcon: Icon(Icons.work,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: 'Ingresos (Opcional)',
-                            prefixIcon: Icon(Icons.attach_money),
+                            prefixIcon: Icon(Icons.attach_money,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Correo',
-                            prefixIcon: Icon(Icons.email),
+                            prefixIcon: Icon(Icons.email,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
-                            prefixIcon: Icon(Icons.lock),
+                            prefixIcon: Icon(Icons.lock,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 16.0),
                         TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Confirmar Contraseña',
-                            prefixIcon: Icon(Icons.lock),
+                            prefixIcon: Icon(Icons.lock,
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 173, 116, 183)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 173, 116, 183),
+                                width: 2.0,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 16.0),
@@ -108,7 +220,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 });
                               },
                             ),
-                            Text('Acepto los Términos y Condiciones'),
+                            Text(
+                              'Acepto los Términos y Condiciones',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 173, 116, 183)),
+                            ),
                             SizedBox(width: 16.0),
                             _isChecked
                                 ? Icon(
@@ -132,7 +248,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             );
                           },
-                          child: Icon(Icons.arrow_forward),
+                          child: Icon(Icons.arrow_forward, color: Colors.white),
                           style: ElevatedButton.styleFrom(
                             shape: CircleBorder(),
                             padding: EdgeInsets.all(16.0),
