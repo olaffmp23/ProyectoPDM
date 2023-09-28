@@ -63,6 +63,8 @@ class SignInPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           shape: CircleBorder(),
                           padding: EdgeInsets.all(16.0),
+                          primary: Color.fromARGB(255, 169, 44,
+                              191), // Cambia el color según tu preferencia
                         ),
                       ),
                     ],

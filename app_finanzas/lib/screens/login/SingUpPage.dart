@@ -1,6 +1,15 @@
+import 'package:app_finanzas/screens/login/SingInPage.dart';
+import 'package:app_finanzas/screens/menu/menu.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,75 +25,144 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin: EdgeInsets.all(16.0),
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Sign Up',
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: EdgeInsets.all(16.0),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Nombre',
+                            prefixIcon: Icon(Icons.person),
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Apellido',
+                            prefixIcon: Icon(Icons.person),
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Fecha de Nacimiento',
+                            prefixIcon: Icon(Icons.calendar_today),
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Ocupación (Opcional)',
+                            prefixIcon: Icon(Icons.work),
+                          ),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'Ingresos (Opcional)',
+                            prefixIcon: Icon(Icons.attach_money),
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Correo',
+                            prefixIcon: Icon(Icons.email),
+                          ),
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Contraseña',
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Confirmar Contraseña',
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Checkbox(
+                              value: _isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  _isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Acepto los Términos y Condiciones'),
+                            SizedBox(width: 16.0),
+                            _isChecked
+                                ? Icon(
+                                    Icons.check_circle,
+                                    color: Colors.green,
+                                    size: 24.0,
+                                  )
+                                : Container(),
+                          ],
+                        ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Agregar aquí la lógica para iniciar sesión
+                            // ...
+                            // Después de que el usuario haya iniciado sesión, navegamos a la página de menú
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyPage(),
+                              ),
+                            );
+                          },
+                          child: Icon(Icons.arrow_forward),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(16.0),
+                            primary: Color.fromARGB(255, 169, 44, 191),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextButton(
+                  onPressed: () {
+                    // Navegar a la página de inicio de sesión
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignInPage(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '¿Ya tienes una cuenta? SIGN IN',
                     style: TextStyle(
-                      fontSize: 40.0,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Nombre'),
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Apellido'),
-                  ),
-                  TextFormField(
-                    decoration:
-                        InputDecoration(labelText: 'Fecha de Nacimiento'),
-                  ),
-                  TextFormField(
-                    decoration:
-                        InputDecoration(labelText: 'Ocupación (Opcional)'),
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration:
-                        InputDecoration(labelText: 'Ingresos (Opcional)'),
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Correo'),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: 'Contraseña'),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration:
-                        InputDecoration(labelText: 'Confirmar Contraseña'),
-                  ),
-                  SizedBox(height: 16.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Checkbox(value: false, onChanged: (bool? value) {}),
-                      Text('Acepto los Términos y Condiciones'),
-                    ],
-                  ),
-                  SizedBox(height: 16.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Agregar aquí la lógica para registrar al usuario
-                    },
-                    child: Icon(Icons.arrow_forward),
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(16.0),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

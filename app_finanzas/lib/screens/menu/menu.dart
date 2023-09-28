@@ -14,7 +14,7 @@ class MyPage extends StatelessWidget {
                 end: Alignment.centerRight,
                 colors: [
                   Color.fromARGB(255, 147, 67, 212),
-                  Color.fromARGB(255, 191, 101, 207)
+                  Color.fromARGB(255, 191, 101, 207),
                 ],
               ),
             ),
@@ -80,7 +80,6 @@ class MyPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 4),
                           child: Row(
-                            //mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 width: 12.0,
@@ -119,7 +118,7 @@ class MyPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  /*Padding(
+                  /* Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: DropdownButton<String>(
                       items: <String>[
@@ -138,7 +137,7 @@ class MyPage extends StatelessWidget {
                       },
                       hint: Text('Select an option'),
                     ),
-                  ),*/
+                  ), */
                   const SizedBox(height: 160.0),
                   Container(
                     color: const Color.fromARGB(255, 56, 56, 56),
