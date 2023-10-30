@@ -1,6 +1,13 @@
 import 'package:app_finanzas/screens/login/SingInPage.dart';
 import 'package:app_finanzas/screens/menu/menu.dart';
+import 'package:app_finanzas/funciones/CustomTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
+
+//Permisos para JSON
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -8,13 +15,88 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _name2Controller = TextEditingController();
+  final TextEditingController _birthController = TextEditingController();
+  final TextEditingController _ocupacionController = TextEditingController();
+  final TextEditingController _ingresosController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _contraController = TextEditingController();
+  final TextEditingController _contra2Controller = TextEditingController();
+
+  // Función para guardar los datos en JSON
+  Future<void> _saveFormData() async {
+    //if (_formKey.currentState!.validate()) {
+      //Datos del usuario
+      final userData = {
+        'nombre': _nameController.text,
+        'apellido': _name2Controller.text,
+        'fecha_nacimiento': _birthController.text,
+        'ocupacion': _ocupacionController.text,
+        'ingresos': _ingresosController.text,
+        'correo': _emailController.text,
+        'contrasena': _contraController.text,
+        'contrasena2': _contra2Controller.text,
+      };
+
+      await saveDataToJSON(userData);
+
+      // Mostrar una confirmación o realizar otras acciones después de guardar los datos
+    //}
+  }
+
+  //Escritura de JSON
+  Future<void> saveDataToJSON(Map<String, dynamic> data) async {
+    // Obtener el directorio de documentos en el dispositivo
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/data.json');
+
+    // Convertir los datos a una cadena JSON
+    final jsonData = json.encode(data);
+
+    // Escribir los datos en el archivo
+    await file.writeAsString(jsonData);
+
+    print('Datos guardados en el archivo JSON');
+  }
+
+  //Dialogo de permisos
+  void _showPermissionDialog() {
+    showPlatformDialog(
+      context: context,
+      builder: (context) => BasicDialogAlert(
+        title: const Text("Permiso Requerido"),
+        content: const Text("Autorizar permiso para escribir en la memoria del dispositivo."),
+        actions: <Widget>[
+          BasicDialogAction(
+            onPressed: () {
+              Navigator.of(context).pop();
+              //Agregar permiso necesario
+            },
+            title: const Text("Aceptar"),
+          ),
+          BasicDialogAction(
+            onPressed: () {
+            setState(() {
+              _isChecked = false;
+            });
+              Navigator.of(context).pop();
+            },
+            title: const Text("Cancelar"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerRight,
             end: Alignment.centerLeft,
@@ -32,183 +114,84 @@ class _SignUpPageState extends State<SignUpPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  margin: EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.all(16.0),
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'Sign Up',
                           style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Nombre',
-                            prefixIcon: Icon(Icons.person,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Nombre',
+                          prefixIcon: Icons.person,
+                          keyboardType: TextInputType.text,
+                          controller: _nameController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Apellido',
-                            prefixIcon: Icon(Icons.person,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Apellido',
+                          prefixIcon: Icons.person,
+                          keyboardType: TextInputType.text,
+                          controller: _name2Controller,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Fecha de Nacimiento',
-                            prefixIcon: Icon(Icons.calendar_today,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Fecha de Nacimiento',
+                          prefixIcon: Icons.calendar_today,
+                          keyboardType: TextInputType.text,
+                          controller: _birthController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Ocupación (Opcional)',
-                            prefixIcon: Icon(Icons.work,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Ocupación (Opcional)',
+                          prefixIcon: Icons.work,
+                          keyboardType: TextInputType.text,
+                          controller: _ocupacionController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Ingresos (Opcional)',
+                          prefixIcon: Icons.attach_money,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            labelText: 'Ingresos (Opcional)',
-                            prefixIcon: Icon(Icons.attach_money,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                          controller: _ingresosController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Correo',
-                            prefixIcon: Icon(Icons.email,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Correo',
+                          prefixIcon: Icons.email,
+                          keyboardType: TextInputType.text,//emailAddress,
+                          controller: _emailController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Contraseña',
+                          prefixIcon: Icons.lock,
+                          keyboardType: TextInputType.text,
                           obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Contraseña',
-                            prefixIcon: Icon(Icons.lock,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                          controller: _contraController,
                         ),
-                        SizedBox(height: 16.0),
-                        TextFormField(
+                        const SizedBox(height: 16.0),
+                        CustomTextField(
+                          labelText: 'Confirmar Contraseña',
+                          prefixIcon: Icons.lock,
+                          keyboardType: TextInputType.text,
                           obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Confirmar Contraseña',
-                            prefixIcon: Icon(Icons.lock,
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 116, 183)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 173, 116, 183),
-                                width: 2.0,
-                              ),
-                            ),
-                          ),
+                          controller: _contra2Controller,
                         ),
-                        SizedBox(height: 16.0),
+                        const SizedBox(height: 16.0),
+
+                        ElevatedButton(
+                          onPressed: _saveFormData, // Llama a la función para guardar datos
+                          child: const Text('Guardar'),
+                        ),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -216,7 +199,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               value: _isChecked,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  _isChecked = value!;
+                                  _isChecked = value ?? false;
+                                  if (_isChecked) {
+                                    _showPermissionDialog();
+                                  }
                                 });
                               },
                             ),
