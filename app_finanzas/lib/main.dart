@@ -1,3 +1,4 @@
+import 'package:app_finanzas/screens/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:app_finanzas/screens/login/SingInPage.dart';
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignInPage(), 
+      home: MyPage(), 
     );
   }
 }
